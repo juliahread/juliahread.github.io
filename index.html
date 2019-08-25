@@ -25,6 +25,28 @@
     <!-- Custom styles for this template -->
     <link href="css/freelancer.css" rel="stylesheet">
 
+    <!-- WebGL stuff -->
+    <script id="vertex-shader" type="x-shader/x-vertex">
+      attribute vec4 vPosition;
+      attribute vec4 vColor;
+      varying vec4 fColor;
+      void main() {
+        gl_Position = vPosition;
+        fColor = vColor;
+      }
+    </script>
+    <script id="fragment-shader" type="x-shader/x-fragment">
+      precision mediump float;
+      varying vec4 fColor;
+      void main(){
+        gl_FragColor = fColor;
+      }
+    </script>
+    <script type="text/javascript" src="js/Common/webgl-utils.js"></script>
+    <script type="text/javascript" src="js/Common/initShaders.js"></script>
+    <script type="text/javascript" src="js/Common/MV.js"></script>
+    <script type="text/javascript" src="js/colorbar.js"></script>
+
   </head>
 
 
@@ -105,7 +127,9 @@
         <h2 class="text-center text-uppercase text-white">WebGL Fun</h2>
         <hr class="star-light mb-5">
         <div class="row">
-          Hi!
+          <canvas id="gl-canvas" width="512" height="256">
+            Oops ... your browser doesn't support the HTML5 canvas element
+          </canvas>
         </div>
       </div>
     </section>
