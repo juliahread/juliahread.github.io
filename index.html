@@ -9,7 +9,7 @@
     <meta name="author" content="">
 
     <title>Julia Read</title>
-    <link rel="shortcut icon" type="image/ico" href="favicon.ico"/>
+    <link rel="shortcut icon" type="image/ico" href="assets/favicon.ico"/>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -66,9 +66,6 @@
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#webgl">WebGL</a>
-            </li>
-            <li class="nav-item mx-0 mx-lg-1">
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#coding">Coding</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
@@ -85,7 +82,7 @@
     <!-- Header -->
     <header class="masthead bg-primary text-center">
       <div class="container">
-        <img class="img-fluid mb-5 d-block mx-auto" src="img/profile.png" alt="">
+        <img class="img-fluid mb-5 d-block mx-auto" width="256px" border-radius="50%" src="assets/profile.png" alt="">
         <h1 class="text-uppercase text-white mb-0">Julia Read</h1>
         <hr class="star-begin">
         <h2 class="font-weight-light mb-0">Software Developer · Artist · Animation Enthusiast</h2>
@@ -95,23 +92,24 @@
     <!-- About -->
     <section class="portfolio" id="about">
       <div class="container">
-        <h2 class="text-center text-uppercase text-secondary mb-0">About Me</h2>
+        <h2 class="text-center text-uppercase text-secondary mb-0">About</h2>
         <hr class="star-dark mb-5">
         <div class="row">
-          <div class="col-lg-4 ml-auto">
+          <div class="col-lg-5 ml-auto">
             <h4 class="text-center mb-4">Hello World!</h4>
             <p class="lead blocked">
-              I'm a junior at
+              I'm a senior at
               <a target="_blank" href="https://www.hmc.edu/">Harvey Mudd College</a>
-               double majoring in Computer
-              Science and Visual Art. I'm really passionate about the
-              intersection of technology and design! Although I do have some
-              experience with front-end web development, I'm currently interested
-              in exploring computer graphics and animation. I'm from the Bay
-              Area, but I'll be in Los Angeles this summer for a software
-              engineering internship with
-              <a target="_blank" href="http://www.dice.se/about/los-angeles/">Electronic Arts DICE</a>
-              . Hope you enjoy my website!
+              double majoring in Computer Science and Art (Concentration: Digital Art),
+              and I'm really passionate about the intersection of software, physics, math,
+              art, and design! The most amazing things can happen with software as the
+              medium, physics as the connection to reality, math as a mode of numerical communication,
+              art as the evoker of emotion, and design to tie it all together.
+              Although I do have some web development experience, I'm currently interested
+              in exploring computer graphics and animation. I've also taken a
+              particular interest in procedural generation. I'm Bay Area born,
+              but most recently I was in Los Angeles for a software engineering internship with
+              <a target="_blank" href="http://www.dice.se/about/los-angeles/">DICE LA (Electronic Arts)</a>.
             </p>
           </div>
           <div class="col-lg-4 mr-auto">
@@ -121,23 +119,70 @@
       </div>
     </section>
 
-    <!-- WebGL -->
-    <section class="bg-primary text-white mb-0" id="webgl">
+    <!-- Coding -->
+    <section class="portfolio bg-primary text-white mb-0" id="coding">
       <div class="container">
-        <h2 class="text-center text-uppercase text-white">WebGL Fun</h2>
+        <h2 class="text-center text-uppercase text-white mb-0">Coding</h2>
         <hr class="star-light mb-5">
         <div class="row">
-          <canvas id="gl-canvas" width="512" height="256">
-            Oops ... your browser doesn't support the HTML5 canvas element
-          </canvas>
+          <div class="col-md-6 col-lg-4">
+            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-1">
+              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                  <i class="fas fa-search-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="assets/raytracedChess.png" alt="">
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-2">
+              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                  <i class="fas fa-search-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="assets/flightsim.png" alt="">
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-3">
+              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                  <i class="fas fa-search-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="assets/disaster.png" alt="">
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-4">
+              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                  <i class="fas fa-search-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="assets/flextracker.png" alt="">
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-5">
+              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                  <i class="fas fa-search-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="assets/musicvisualizer.png" alt="">
+            </a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Coding -->
-    <section class="portfolio" id="coding">
+    <!-- Art -->
+    <section class="portfolio" id="art">
       <div class="container">
-        <h2 class="text-center text-uppercase text-secondary mb-0">Coding Projects</h2>
+        <h2 class="text-center text-uppercase text-secondary">Art</h2>
         <hr class="star-dark mb-5">
         <div class="row">
           <div class="col-md-6 col-lg-4">
@@ -147,7 +192,7 @@
                   <i class="fas fa-search-plus fa-3x"></i>
                 </div>
               </div>
-              <img class="img-fluid" src="img/portfolio/cabin.png" alt="">
+              <img class="img-fluid" src="assets/watercolor.png" alt="">
             </a>
           </div>
           <div class="col-md-6 col-lg-4">
@@ -157,7 +202,7 @@
                   <i class="fas fa-search-plus fa-3x"></i>
                 </div>
               </div>
-              <img class="img-fluid" src="img/portfolio/cake.png" alt="">
+              <img class="img-fluid" src="assets/acrylic.png" alt="">
             </a>
           </div>
           <div class="col-md-6 col-lg-4">
@@ -167,7 +212,7 @@
                   <i class="fas fa-search-plus fa-3x"></i>
                 </div>
               </div>
-              <img class="img-fluid" src="img/portfolio/circus.png" alt="">
+              <img class="img-fluid" src="assets/digitaldesign.png" alt="">
             </a>
           </div>
           <div class="col-md-6 col-lg-4">
@@ -177,7 +222,7 @@
                   <i class="fas fa-search-plus fa-3x"></i>
                 </div>
               </div>
-              <img class="img-fluid" src="img/portfolio/game.png" alt="">
+              <img class="img-fluid" src="assets/digitaldrawing.png" alt="">
             </a>
           </div>
           <div class="col-md-6 col-lg-4">
@@ -187,87 +232,7 @@
                   <i class="fas fa-search-plus fa-3x"></i>
                 </div>
               </div>
-              <img class="img-fluid" src="img/portfolio/safe.png" alt="">
-            </a>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-6">
-              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
-                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
-                  <i class="fas fa-search-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="img/portfolio/submarine.png" alt="">
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Art -->
-    <section class="portfolio bg-primary text-white mb-0" id="art">
-      <div class="container">
-        <h2 class="text-center text-uppercase text-white">Art Portfolio</h2>
-        <hr class="star-light mb-5">
-        <div class="row">
-          <div class="col-md-6 col-lg-4">
-            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-1">
-              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
-                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
-                  <i class="fas fa-search-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="img/portfolio/cabin.png" alt="">
-            </a>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-2">
-              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
-                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
-                  <i class="fas fa-search-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="img/portfolio/cake.png" alt="">
-            </a>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-3">
-              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
-                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
-                  <i class="fas fa-search-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="img/portfolio/circus.png" alt="">
-            </a>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-4">
-              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
-                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
-                  <i class="fas fa-search-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="img/portfolio/game.png" alt="">
-            </a>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-5">
-              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
-                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
-                  <i class="fas fa-search-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="img/portfolio/safe.png" alt="">
-            </a>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-6">
-              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
-                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
-                  <i class="fas fa-search-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="img/portfolio/submarine.png" alt="">
+              <img class="img-fluid" src="assets/animation.png" alt="">
             </a>
           </div>
         </div>
@@ -277,7 +242,7 @@
     <!-- Contact -->
     <section id="contact" class="text-center text-white dark-bg">
       <div class="container">
-        <h2 class="text-center text-uppercase text-white">Contact Me</h2>
+        <h2 class="text-center text-uppercase text-white">Contact</h2>
         <hr class="star-end mb-5">
         <br><br>
         <div class="row">
