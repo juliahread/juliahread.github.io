@@ -30,23 +30,58 @@
       attribute vec4 vPosition;
       attribute vec4 vColor;
       varying vec4 fColor;
+      uniform vec3 theta;
+
       void main() {
+        vec3 angles = radians(theta);
+        vec3 c = cos(angles);
+        vec3 s = sin(angles);
+
+        // Column-major matrices
+        mat4 rx = mat4(
+          1.0,  0.0,  0.0, 0.0,
+          0.0,  c.x,  s.x, 0.0,
+          0.0, -s.x,  c.x, 0.0,
+          0.0,  0.0,  0.0, 1.0
+        );
+
+        mat4 ry = mat4(
+          c.y, 0.0, -s.y, 0.0,
+          0.0, 1.0,  0.0, 0.0,
+          s.y, 0.0,  c.y, 0.0,
+          0.0, 0.0,  0.0, 1.0
+        );
+
+        mat4 rz = mat4(
+          c.z, s.z, 0.0, 0.0,
+          -s.z,  c.z, 0.0, 0.0,
+          0.0,  0.0, 1.0, 0.0,
+          0.0,  0.0, 0.0, 1.0
+        );
+
         gl_Position = vPosition;
+        float scale = 0.5;
+        gl_Position = scale * gl_Position;
+        gl_Position[3] = 1.0;
+        gl_Position = rz * ry * rx * gl_Position;
+
         fColor = vColor;
       }
     </script>
+
     <script id="fragment-shader" type="x-shader/x-fragment">
       precision mediump float;
       varying vec4 fColor;
-      void main(){
-        gl_FragColor = fColor;
+
+      void main() {
+          gl_FragColor = fColor;
       }
     </script>
+
     <script type="text/javascript" src="js/Common/webgl-utils.js"></script>
     <script type="text/javascript" src="js/Common/initShaders.js"></script>
     <script type="text/javascript" src="js/Common/MV.js"></script>
-    <script type="text/javascript" src="js/colorbar.js"></script>
-
+    <script type="text/javascript" src="js/tetrix.js"></script>
   </head>
 
 
@@ -112,8 +147,14 @@
               <a target="_blank" href="http://www.dice.se/about/los-angeles/">DICE LA (Electronic Arts)</a>.
             </p>
           </div>
-          <div class="col-lg-4 mr-auto">
-            <p class="lead">Aah</p>
+          <div class="col-lg-5 mr-auto">
+            <button id="xButton">Rotate X</button>
+            <button id="yButton">Rotate Y</button>
+            <button id="zButton">Rotate Z</button>
+            <br>
+            <canvas id="gl-canvas">
+              Oops ... your browser doesn't support the HTML5 canvas element
+            </canvas>
           </div>
         </div>
       </div>
@@ -186,7 +227,7 @@
         <hr class="star-dark mb-5">
         <div class="row">
           <div class="col-md-6 col-lg-4">
-            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-1">
+            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-1a">
               <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                 <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                   <i class="fas fa-search-plus fa-3x"></i>
@@ -196,7 +237,7 @@
             </a>
           </div>
           <div class="col-md-6 col-lg-4">
-            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-2">
+            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-2a">
               <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                 <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                   <i class="fas fa-search-plus fa-3x"></i>
@@ -206,7 +247,7 @@
             </a>
           </div>
           <div class="col-md-6 col-lg-4">
-            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-3">
+            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-3a">
               <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                 <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                   <i class="fas fa-search-plus fa-3x"></i>
@@ -216,7 +257,7 @@
             </a>
           </div>
           <div class="col-md-6 col-lg-4">
-            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-4">
+            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-4a">
               <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                 <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                   <i class="fas fa-search-plus fa-3x"></i>
@@ -226,7 +267,7 @@
             </a>
           </div>
           <div class="col-md-6 col-lg-4">
-            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-5">
+            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-5a">
               <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                 <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                   <i class="fas fa-search-plus fa-3x"></i>
@@ -297,14 +338,14 @@
 
     <!-- Portfolio Modal 1 -->
     <div class="portfolio-modal mfp-hide" id="portfolio-modal-1">
-      <div class="portfolio-modal-dialog bg-white">
+      <div class="portfolio-modal-dialog bg-lightpink">
         <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
           <i class="fa fa-3x fa-times"></i>
         </a>
         <div class="container text-center">
           <div class="row">
             <div class="col-lg-8 mx-auto">
-              <h2 class="text-secondary text-uppercase mb-0">Project Name</h2>
+              <h2 class="text-secondary text-uppercase mb-0">Raytracer</h2>
               <hr class="star-dark mb-5">
               <img class="img-fluid mb-5" src="img/portfolio/cabin.png" alt="">
               <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
@@ -319,14 +360,14 @@
 
     <!-- Portfolio Modal 2 -->
     <div class="portfolio-modal mfp-hide" id="portfolio-modal-2">
-      <div class="portfolio-modal-dialog bg-white">
+      <div class="portfolio-modal-dialog bg-lightpink">
         <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
           <i class="fa fa-3x fa-times"></i>
         </a>
         <div class="container text-center">
           <div class="row">
             <div class="col-lg-8 mx-auto">
-              <h2 class="text-secondary text-uppercase mb-0">Project Name</h2>
+              <h2 class="text-secondary text-uppercase mb-0">Flight Simulator</h2>
               <hr class="star-dark mb-5">
               <img class="img-fluid mb-5" src="img/portfolio/cake.png" alt="">
               <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
@@ -341,14 +382,14 @@
 
     <!-- Portfolio Modal 3 -->
     <div class="portfolio-modal mfp-hide" id="portfolio-modal-3">
-      <div class="portfolio-modal-dialog bg-white">
+      <div class="portfolio-modal-dialog bg-lightpink">
         <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
           <i class="fa fa-3x fa-times"></i>
         </a>
         <div class="container text-center">
           <div class="row">
             <div class="col-lg-8 mx-auto">
-              <h2 class="text-secondary text-uppercase mb-0">Project Name</h2>
+              <h2 class="text-secondary text-uppercase mb-0">Disaster at the 5C's in 2200</h2>
               <hr class="star-dark mb-5">
               <img class="img-fluid mb-5" src="img/portfolio/circus.png" alt="">
               <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
@@ -363,14 +404,14 @@
 
     <!-- Portfolio Modal 4 -->
     <div class="portfolio-modal mfp-hide" id="portfolio-modal-4">
-      <div class="portfolio-modal-dialog bg-white">
+      <div class="portfolio-modal-dialog bg-lightpink">
         <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
           <i class="fa fa-3x fa-times"></i>
         </a>
         <div class="container text-center">
           <div class="row">
             <div class="col-lg-8 mx-auto">
-              <h2 class="text-secondary text-uppercase mb-0">Project Name</h2>
+              <h2 class="text-secondary text-uppercase mb-0">Flex Tracker</h2>
               <hr class="star-dark mb-5">
               <img class="img-fluid mb-5" src="img/portfolio/game.png" alt="">
               <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
@@ -385,14 +426,14 @@
 
     <!-- Portfolio Modal 5 -->
     <div class="portfolio-modal mfp-hide" id="portfolio-modal-5">
-      <div class="portfolio-modal-dialog bg-white">
+      <div class="portfolio-modal-dialog bg-lightpink">
         <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
           <i class="fa fa-3x fa-times"></i>
         </a>
         <div class="container text-center">
           <div class="row">
             <div class="col-lg-8 mx-auto">
-              <h2 class="text-secondary text-uppercase mb-0">Project Name</h2>
+              <h2 class="text-secondary text-uppercase mb-0">Music Visualizer</h2>
               <hr class="star-dark mb-5">
               <img class="img-fluid mb-5" src="img/portfolio/safe.png" alt="">
               <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
@@ -405,18 +446,106 @@
       </div>
     </div>
 
-    <!-- Portfolio Modal 6 -->
-    <div class="portfolio-modal mfp-hide" id="portfolio-modal-6">
-      <div class="portfolio-modal-dialog bg-white">
+    <!-- Portfolio Modal 1 -->
+    <div class="portfolio-modal mfp-hide" id="portfolio-modal-1a">
+      <div class="portfolio-modal-dialog bg-lightpink">
         <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
           <i class="fa fa-3x fa-times"></i>
         </a>
         <div class="container text-center">
           <div class="row">
             <div class="col-lg-8 mx-auto">
-              <h2 class="text-secondary text-uppercase mb-0">Project Name</h2>
+              <h2 class="text-secondary text-uppercase mb-0">Watercolor</h2>
               <hr class="star-dark mb-5">
-              <img class="img-fluid mb-5" src="img/portfolio/submarine.png" alt="">
+              <img class="img-fluid mb-5" src="img/portfolio/cabin.png" alt="">
+              <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+              <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                <i class="fa fa-close"></i>
+                Close Project</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Portfolio Modal 2 -->
+    <div class="portfolio-modal mfp-hide" id="portfolio-modal-2a">
+      <div class="portfolio-modal-dialog bg-lightpink">
+        <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+          <i class="fa fa-3x fa-times"></i>
+        </a>
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <h2 class="text-secondary text-uppercase mb-0">Acrylic</h2>
+              <hr class="star-dark mb-5">
+              <img class="img-fluid mb-5" src="img/portfolio/cake.png" alt="">
+              <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+              <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                <i class="fa fa-close"></i>
+                Close Project</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Portfolio Modal 3 -->
+    <div class="portfolio-modal mfp-hide" id="portfolio-modal-3a">
+      <div class="portfolio-modal-dialog bg-lightpink">
+        <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+          <i class="fa fa-3x fa-times"></i>
+        </a>
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <h2 class="text-secondary text-uppercase mb-0">Digital Design</h2>
+              <hr class="star-dark mb-5">
+              <img class="img-fluid mb-5" src="img/portfolio/circus.png" alt="">
+              <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+              <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                <i class="fa fa-close"></i>
+                Close Project</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Portfolio Modal 4 -->
+    <div class="portfolio-modal mfp-hide" id="portfolio-modal-4a">
+      <div class="portfolio-modal-dialog bg-lightpink">
+        <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+          <i class="fa fa-3x fa-times"></i>
+        </a>
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <h2 class="text-secondary text-uppercase mb-0">Digital Drawing</h2>
+              <hr class="star-dark mb-5">
+              <img class="img-fluid mb-5" src="img/portfolio/game.png" alt="">
+              <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+              <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                <i class="fa fa-close"></i>
+                Close Project</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Portfolio Modal 5 -->
+    <div class="portfolio-modal mfp-hide" id="portfolio-modal-5a">
+      <div class="portfolio-modal-dialog bg-lightpink">
+        <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+          <i class="fa fa-3x fa-times"></i>
+        </a>
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <h2 class="text-secondary text-uppercase mb-0">Animation</h2>
+              <hr class="star-dark mb-5">
+              <img class="img-fluid mb-5" src="img/portfolio/safe.png" alt="">
               <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
               <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
                 <i class="fa fa-close"></i>

@@ -236,6 +236,9 @@ a {
 .bg-secondary {
   background-color: #503d3d !important; }
 
+.bg-lightpink {
+  background-color: #eee2e2 !important; }
+
 .text-primary {
   color: #e5aaaa !important; }
 
@@ -255,3 +258,15 @@ a {
   .btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active {
     background-color: #332727;
     border-color: #332727; }
+
+canvas.gl-canvas {
+  display: block;
+}
+
+html, body {
+    height: 100%;
+}
+
+header {
+    height: 100%;
+}
