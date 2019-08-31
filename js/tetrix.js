@@ -67,8 +67,8 @@ window.onload = function init() {
   }
 
   document.onmousemove = function(e) {
-    xPos = e.pageX;
-    yPos = e.pageY;
+    xPos = e.clientX;
+    yPos = e.clientY;
   }
 
   render();
@@ -112,8 +112,8 @@ function render() {
     oldDepth = depth;
   }
 
-  theta[0] = xPos * 314.159 / window.innerWidth;
-  theta[1] = yPos * 314.159 / window.innerHeight;
+  theta[0] = xPos * 314.159 / window.innerWidth + 314.159 / 2;
+  theta[1] = yPos * 314.159 / window.innerHeight + 314.159 / 2;
   theta[2] = window.scrollY / 2;
 
   gl.uniform3fv(theta_loc, flatten(theta));
