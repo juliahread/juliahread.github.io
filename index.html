@@ -82,6 +82,15 @@
     <script type="text/javascript" src="js/Common/initShaders.js"></script>
     <script type="text/javascript" src="js/Common/MV.js"></script>
     <script type="text/javascript" src="js/tetrix.js"></script>
+
+    <script>
+        document.addEventListener("keyup", function(e) {
+            if (e.keyCode == 27) {
+                jQuery.magnificPopup.close();
+            }
+        });
+    </script>
+
   </head>
 
 
@@ -130,7 +139,7 @@
         <h2 class="text-center text-uppercase text-secondary mb-0">About</h2>
         <hr class="star-dark mb-5">
         <div class="row">
-          <div class="col-lg-5 ml-auto">
+          <div class="col-lg-5 ml-auto text-secondary">
             <h4 class="text-center mb-4">Hello World!</h4>
             <p class="lead blocked">
               I'm a senior at
@@ -148,13 +157,10 @@
             </p>
           </div>
           <div class="col-lg-5 mr-auto">
-            <button id="xButton">Rotate X</button>
-            <button id="yButton">Rotate Y</button>
-            <button id="zButton">Rotate Z</button>
-            <br>
             <canvas id="gl-canvas">
               Oops ... your browser doesn't support the HTML5 canvas element
             </canvas>
+            <center><input type="range" min="0" max="4" value="2" id="recursionSlider">Recursion Depth</input></center>
           </div>
         </div>
       </div>
@@ -253,7 +259,7 @@
                   <i class="fas fa-search-plus fa-3x"></i>
                 </div>
               </div>
-              <img class="img-fluid" src="assets/digitaldesign.png" alt="">
+              <img class="img-fluid" src="assets/cards.png" alt="">
             </a>
           </div>
           <div class="col-md-6 col-lg-4">
@@ -263,11 +269,21 @@
                   <i class="fas fa-search-plus fa-3x"></i>
                 </div>
               </div>
-              <img class="img-fluid" src="assets/digitaldrawing.png" alt="">
+              <img class="img-fluid" src="assets/digitaldesign.png" alt="">
             </a>
           </div>
           <div class="col-md-6 col-lg-4">
             <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-5a">
+              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                  <i class="fas fa-search-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="assets/digitaldrawing.png" alt="">
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-6a">
               <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                 <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                   <i class="fas fa-search-plus fa-3x"></i>
@@ -457,11 +473,25 @@
             <div class="col-lg-8 mx-auto">
               <h2 class="text-secondary text-uppercase mb-0">Watercolor</h2>
               <hr class="star-dark mb-5">
-              <img class="img-fluid mb-5" src="img/portfolio/cabin.png" alt="">
-              <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+              <p class="mb-5 text-secondary">Here are a few of my favorite watercolor pieces I've worked on. I've mostly just painted with watercolors for fun on my own, but a few of the pieces I've made have been for a painting class. In 2015, I had a particular interest in painting fish, and depicted below are my first fish next to my sixth fish. Practice makes better!</p>
+              <div class="row">
+                <div class="col-lg-6">
+                  <img class="img-fluid mb-5" src="assets/watercolor01.png" alt="">
+                </div>
+                <div class="col-lg-6">
+                  <img class="img-fluid mb-5" src="assets/watercolor04.png" alt="">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <img class="img-fluid mb-5" src="assets/watercolor03.png" alt="">
+                </div>
+                <div class="col-lg-6">
+                  <img class="img-fluid mb-5" src="assets/watercolor02.png" alt="">
+                </div>
+              </div>
               <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
-                <i class="fa fa-close"></i>
-                Close Project</a>
+                <i class="fa fa-close"></i>Close</a>
             </div>
           </div>
         </div>
@@ -477,13 +507,35 @@
         <div class="container text-center">
           <div class="row">
             <div class="col-lg-8 mx-auto">
-              <h2 class="text-secondary text-uppercase mb-0">Acrylic</h2>
+              <h2 class="text-secondary text-uppercase mb-0">Acrylic, Pen, and Mixed Media</h2>
               <hr class="star-dark mb-5">
-              <img class="img-fluid mb-5" src="img/portfolio/cake.png" alt="">
-              <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+              <p class="mb-5 text-secondary">Text</p>
+              <div class="row">
+                <div class="col-lg-6">
+                  <img class="img-fluid mb-5" src="assets/acrylic05.png" alt="">
+                </div>
+                <div class="col-lg-6">
+                  <img class="img-fluid mb-5" src="assets/acrylic04.png" alt="">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <img class="img-fluid mb-5" src="assets/acrylic02.png" alt="">
+                </div>
+                <div class="col-lg-6">
+                  <img class="img-fluid mb-5" src="assets/acrylic01.png" alt="">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <img class="img-fluid mb-5" src="assets/acrylic06.png" alt="">
+                </div>
+                <div class="col-lg-6">
+                  <img class="img-fluid mb-5" src="assets/acrylic03.png" alt="">
+                </div>
+              </div>
               <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
-                <i class="fa fa-close"></i>
-                Close Project</a>
+                <i class="fa fa-close"></i>Close</a>
             </div>
           </div>
         </div>
@@ -499,13 +551,20 @@
         <div class="container text-center">
           <div class="row">
             <div class="col-lg-8 mx-auto">
-              <h2 class="text-secondary text-uppercase mb-0">Digital Design</h2>
+              <h2 class="text-secondary text-uppercase mb-0">Cards</h2>
               <hr class="star-dark mb-5">
-              <img class="img-fluid mb-5" src="img/portfolio/circus.png" alt="">
-              <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+              <p class="mb-5 text-secondary">Text</p>
+              <div class="row">
+                <div class="col-lg-6">
+                  <img class="img-fluid mb-5" src="assets/card01.png" alt="">
+                </div>
+                <div class="col-lg-6">
+                  <img class="img-fluid mb-5" src="assets/card02.png" alt="">
+                </div>
+              </div>
+              <img class="img-fluid mb-5" src="assets/card03.png" alt="">
               <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
-                <i class="fa fa-close"></i>
-                Close Project</a>
+                <i class="fa fa-close"></i>Close</a>
             </div>
           </div>
         </div>
@@ -521,9 +580,46 @@
         <div class="container text-center">
           <div class="row">
             <div class="col-lg-8 mx-auto">
+              <h2 class="text-secondary text-uppercase mb-0">Digital Design</h2>
+              <hr class="star-dark mb-5">
+              <p class="mb-5 text-secondary">Text</p>
+              <div class="row">
+                <div class="col-lg-6">
+                  <img class="img-fluid mb-5" src="assets/digital05.png" alt="">
+                </div>
+                <div class="col-lg-6">
+                  <img class="img-fluid mb-5" src="assets/digital01.png" alt="">
+                </div>
+              </div>
+              <img class="img-fluid mb-5" src="assets/digital02.png" alt="">
+              <div class="row">
+                <div class="col-lg-6">
+                  <img class="img-fluid mb-5" src="assets/digital03.png" alt="">
+                </div>
+                <div class="col-lg-6">
+                  <img class="img-fluid mb-5" src="assets/digital04.png" alt="">
+                </div>
+              </div>
+              <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                <i class="fa fa-close"></i>Close</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Portfolio Modal 5 -->
+    <div class="portfolio-modal mfp-hide" id="portfolio-modal-5a">
+      <div class="portfolio-modal-dialog bg-lightpink">
+        <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+          <i class="fa fa-3x fa-times"></i>
+        </a>
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
               <h2 class="text-secondary text-uppercase mb-0">Digital Drawing</h2>
               <hr class="star-dark mb-5">
-              <img class="img-fluid mb-5" src="img/portfolio/game.png" alt="">
+              <img class="img-fluid mb-5" src="img/portfolio/safe.png" alt="">
               <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
               <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
                 <i class="fa fa-close"></i>
@@ -534,8 +630,8 @@
       </div>
     </div>
 
-    <!-- Portfolio Modal 5 -->
-    <div class="portfolio-modal mfp-hide" id="portfolio-modal-5a">
+    <!-- Portfolio Modal 6 -->
+    <div class="portfolio-modal mfp-hide" id="portfolio-modal-6a">
       <div class="portfolio-modal-dialog bg-lightpink">
         <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
           <i class="fa fa-3x fa-times"></i>

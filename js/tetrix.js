@@ -1,7 +1,9 @@
 // GLOBAL VARIABLES
 var gl;
+var program;
 // Recursion depth
-var depth = 3;
+var depth = 2;
+var oldDepth;
 // Initial vertices
 var vert0 = vec3(-1,  0, -1 / Math.sqrt(2));
 var vert1 = vec3( 1,  0, -1 / Math.sqrt(2));
@@ -10,40 +12,73 @@ var vert3 = vec3( 0, -1,  1 / Math.sqrt(2));
 // Vertices array
 var vertices;
 // Colors used
-var pink1 = vec3(255 / 255, 209 / 255, 220 / 255);
-var pink2 = vec3(252 / 255, 142 / 255, 172 / 255);
-var blue1 = vec3(115 / 255, 194 / 255, 230 / 255);
-var blue2 = vec3(179 / 255, 205 / 255, 224 / 255);
+var pink1 = vec3(229 / 255, 170 / 255, 170 / 255);
+var pink2 = vec3(1, 1, 1);
+var blue1 = vec3(80 / 255, 61 / 255, 61 / 255);
+var blue2 = vec3(141 / 255, 103 / 255, 103 / 255);
 // Colors array
 var colors = [];
 // Vector with point halfway
 var half = [vec3(0, 0, 0), vec3(2, 2, 2), vec3(1, 1, 1)];
 // Rotation variables
 var theta = [0.0, 0.0, 0.0];
-var x_axis = 0;
-var y_axis = 1;
-var z_axis = 2;
-var axis = x_axis;
+var xPos;
+var yPos;
+var axis = 0;
 var theta_loc;
+
+function fitToContainer(canvas) {
+  // Make it visually fill the positioned parent
+  canvas.style.width = '100%';
+  canvas.style.height = '100%';
+
+  let limiter = canvas.offsetWidth;
+  if (canvas.offsetWidth < canvas.offsetHeight) {
+    limiter = canvas.offsetWidth;
+  } else if (canvas.offsetWidth > canvas.offsetHeight) {
+    limiter = canvas.offsetHeight;
+  }
+  canvas.height = limiter;
+  canvas.width = limiter;
+  canvas.removeAttribute("style");
+}
 
 window.onload = function init() {
   var canvas = document.getElementById( "gl-canvas" );
+  fitToContainer(canvas);
 
   gl = WebGLUtils.setupWebGL( canvas );
   if ( !gl ) { alert( "WebGL isn't available" ); }
 
   // Configures WebGL
   gl.viewport( 0, 0, canvas.width, canvas.height );
-  gl.clearColor( 1.0, 1.0, 1.0, 1.0 );
+  gl.clearColor( 0.0, 0.0, 0.0, 0.0 );
   gl.enable(gl.DEPTH_TEST);
 
   // Loads shaders and initializes attribute buffers
-  var program = initShaders( gl, "vertex-shader", "fragment-shader" );
+  program = initShaders( gl, "vertex-shader", "fragment-shader" );
   gl.useProgram( program );
 
+  theta_loc = gl.getUniformLocation(program, "theta");
+
+  // Listeners
+  document.getElementById("recursionSlider").oninput = function() {
+    depth = this.value;
+  }
+
+  document.onmousemove = function(e) {
+    xPos = e.pageX;
+    yPos = e.pageY;
+  }
+
+  render();
+};
+
+function fillBuffer() {
   // Generates vertices through recursive call
   vertices = tetCoords(depth, fillVerts(vert0, vert1, vert2, vert3));
   // Loops through vertices to add correct colors
+  colors = [];
   for (var i = 0; i < vertices.length; i += 12) {
     colors = colors.concat(
       [ pink1, pink1, pink1,
@@ -68,26 +103,19 @@ window.onload = function init() {
   var vColor = gl.getAttribLocation( program, "vColor" );
   gl.vertexAttribPointer( vColor, 3, gl.FLOAT, false, 0, 0 );
   gl.enableVertexAttribArray( vColor );
-
-  theta_loc = gl.getUniformLocation(program, "theta");
-
-  // Rotation listeners
-  document.getElementById("xButton").onclick = function() {
-    axis = x_axis;
-  }
-  document.getElementById("yButton").onclick = function() {
-    axis = y_axis;
-  }
-  document.getElementById("zButton").onclick = function() {
-    axis = z_axis;
-  }
-
-  render();
-};
+}
 
 // Updates rotation and draws triangles
 function render() {
-  theta[axis] += 1;
+  if (oldDepth != depth) {
+    fillBuffer();
+    oldDepth = depth;
+  }
+
+  theta[0] = xPos * 314.159 / window.innerWidth;
+  theta[1] = yPos * 314.159 / window.innerHeight;
+  theta[2] = window.scrollY / 2;
+
   gl.uniform3fv(theta_loc, flatten(theta));
   gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   gl.drawArrays( gl.TRIANGLES, 0, vertices.length );
