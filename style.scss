@@ -344,6 +344,22 @@ ul.spaced-list li {
   margin: 10px 0;
 }
 
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-element {
+  width: 50%;
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.flex-element img {
+  width: 100%;
+}
+
 .wrapper-masthead, .main, .wrapper-footer {
   flex-shrink: 0;
 }
