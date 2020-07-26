@@ -86,4 +86,6 @@ exclude:
   - CNAME
 
 collections:
+  - coding
   - art
+  - food
