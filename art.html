@@ -4,18 +4,141 @@ title: Art
 permalink: /art/
 ---
 
-{% assign fine-art = site.art | where:'category', 'fine-art' %}
+{% assign logo = site.art | where:'category', 'logo' %}
 
-<h3> Fine Art </h3>
-<div class="flex-container art fine-art">
-  {% for art in fine-art %}
+<h3> Logo Design </h3>
+<div class="flex-container art logo">
+  {% for art in logo %}
   <div class="flex-element">
-    <img src="{{ art.image-url }}" />
+    <div class="img-container">
+      <img src="{{ art.image-url }}" />
+      {% if art.desc %}
+        <p> {{ art.desc }} </p>
+      {% endif %}
+    </div>
   </div>
   {% endfor %}
 </div>
 
-{% assign something-else = site.art | where:'category', 'something-else' %}
+{% assign typography = site.art | where:'category', 'typography' %}
+
+<h3> Typography </h3>
+<div class="flex-container art typography">
+  {% for art in typography %}
+  <div class="flex-element">
+    <div class="img-container">
+      <img src="{{ art.image-url }}" />
+      {% if art.desc %}
+        <p> {{ art.desc }} </p>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% assign opart = site.art | where:'category', 'opart' %}
+
+<h3> Op Art </h3>
+<div class="flex-container art opart">
+  {% for art in opart %}
+  <div class="flex-element-full">
+    <div class="img-container">
+      <img src="{{ art.image-url }}" />
+      {% if art.desc %}
+        <p> {{ art.desc }} </p>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% assign inktober = site.art | where:'category', 'inktober' %}
+
+<h3> Inktober </h3>
+<div class="flex-container art inktober">
+  {% for art in inktober %}
+  <div class="flex-element">
+    <div class="img-container">
+      <img src="{{ art.image-url }}" />
+      {% if art.desc %}
+        <p> {{ art.desc }} </p>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% assign pixel = site.art | where:'category', 'pixel' %}
+
+<h3> Pixel Art Game Assets </h3>
+<div class="flex-container art pixel">
+  {% for art in pixel %}
+  <div class="flex-element-full">
+    <div class="img-container">
+      <img src="{{ art.image-url }}" />
+      {% if art.desc %}
+        <p> {{ art.desc }} </p>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% assign code = site.art | where:'category', 'code' %}
+
+<h3> Coded Art </h3>
+<div class="flex-container art pixel">
+  {% for art in code %}
+  <div class="flex-element-full">
+    <div class="img-container">
+      <img src="{{ art.image-url }}" />
+      {% if art.desc %}
+        <p> {{ art.desc }} </p>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% assign video = site.art | where:'category', 'video' %}
+
+<h3> Video </h3>
+<div class="flex-container art pixel">
+  {% for art in video %}
+  <div class="flex-element-full">
+    <div class="img-container">
+      <video controls src="{{ art.video-url }}">
+        Sorry, your browser doesn't support embedded videos.
+      </video>
+      {% if art.desc %}
+        <p> {{ art.desc }} </p>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% assign physical = site.art | where:'category', 'physical' %}
+
+<h3> Physical Media </h3>
+<div class="flex-container art pixel">
+  {% for art in physical %}
+  {% if art.full-width %}
+  <div class="flex-element-full">
+  {% else %}
+  <div class="flex-element">
+  {% endif %}
+    <div class="img-container">
+      <img src="{{ art.image-url }}" />
+      {% if art.desc %}
+        <p> {{ art.desc }} </p>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- {% assign something-else = site.art | where:'category', 'something-else' %}
 
 <h3> Something Else </h3>
 <div class="flex-container art something-else">
@@ -24,4 +147,4 @@ permalink: /art/
     <img src="{{ art.thumbnail-url }}" />
   </div>
   {% endfor %}
-</div>
+</div> -->

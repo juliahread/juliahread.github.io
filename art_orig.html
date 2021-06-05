@@ -1,0 +1,27 @@
+---
+layout: page
+title: Art
+permalink: /art-2/
+---
+
+{% assign fine-art = site.art | where:'category', 'fine-art' %}
+
+<h3> Fine Art </h3>
+<div class="flex-container art fine-art">
+  {% for art in fine-art %}
+  <div class="flex-element">
+    <img src="{{ art.image-url }}" />
+  </div>
+  {% endfor %}
+</div>
+
+{% assign something-else = site.art | where:'category', 'something-else' %}
+
+<h3> Something Else </h3>
+<div class="flex-container art something-else">
+  {% for art in something-else %}
+  <div class="flex-element">
+    <img src="{{ art.thumbnail-url }}" />
+  </div>
+  {% endfor %}
+</div>
