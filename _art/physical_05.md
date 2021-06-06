@@ -1,4 +1,4 @@
 ---
-image-url: /images/art/physical/acrylic01.png
+image-url: /images/art/physical/cards.jpg
 category: physical
 ---

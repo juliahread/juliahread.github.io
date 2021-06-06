@@ -68,6 +68,22 @@ permalink: /art/
   {% endfor %}
 </div>
 
+{% assign recipe = site.art | where:'category', 'recipe' %}
+
+<h3> Recipe Art </h3>
+<div class="flex-container art recipe">
+  {% for art in recipe %}
+  <div class="flex-element-full">
+    <div class="img-container">
+      <img src="{{ art.image-url }}" />
+      {% if art.desc %}
+        <p> {{ art.desc }} </p>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
 {% assign pixel = site.art | where:'category', 'pixel' %}
 
 <h3> Pixel Art Game Assets </h3>

@@ -1,5 +1,4 @@
 ---
-image-url: /images/art/physical/pen01.png
+image-url: /images/art/physical/pen02.png
 category: physical
-full-width: true
 ---

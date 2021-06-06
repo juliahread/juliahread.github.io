@@ -1,4 +1,4 @@
 ---
-image-url: /images/art/physical/mixedmedia_02.png
+image-url: /images/art/physical/mixedmedia_01.png
 category: physical
 ---
