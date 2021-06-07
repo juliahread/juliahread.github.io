@@ -1,5 +1,5 @@
 ---
-image-url: /images/art/physical/pen01.png
+image-url: /images/art/physical/cardboard.jpg
 category: physical
 full-width: true
 ---
